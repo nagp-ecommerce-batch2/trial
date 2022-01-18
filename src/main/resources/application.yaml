@@ -3,6 +3,3 @@ server:
 amazon:
     dynamodb:
         endpoint: "https://dynamodb.ap-south-1.amazonaws.com"
-    aws:
-        accesskey: "AKIATB6ZHMNI4NU5UGPB"
-        secretkey: "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"
