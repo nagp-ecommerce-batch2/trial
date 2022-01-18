@@ -2,6 +2,8 @@ package com.ecommerce.order.entity;
 
 import java.util.List;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
+
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
@@ -65,7 +67,7 @@ public class Order {
     public void setAddress(String address) {
         this.address = address;
     }
-
+    @DynamoDBTypeConverted(converter = OrderProductConverter.class)
     public List<OrderProduct> getProducts() {
         return products;
     }

@@ -1,70 +1,80 @@
 package com.ecommerce.order.entity;
 
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbAttribute;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
+@DynamoDbBean
 public class OrderProduct {
-    
-    private String code;
-    private String name;
-    private String price;
-    private Integer quantity;
-    private Integer totalPrice;
 
-    public OrderProduct() {
-    }
+	private String code;
+	private String name;
+	private String price;
+	private Integer quantity;
+	private Integer totalPrice;
 
-    public OrderProduct(String code, String name, String price, Integer quantity, Integer totalPrice) {
-        this.code = code;
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
-        this.totalPrice = totalPrice;
-    }
+	public OrderProduct() {
+	}
 
-    public String getCode() {
-        return code;
-    }
+	public OrderProduct(String code, String name, String price, Integer quantity, Integer totalPrice) {
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.totalPrice = totalPrice;
+	}
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	@DynamoDbSortKey
+	@DynamoDbAttribute(value = "SK")
+	public String getCode() {
+		return code;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@DynamoDbPartitionKey
+	@DynamoDbAttribute(value = "PK")
+	public String getName() {
+		return name;
+	}
 
-    public String getPrice() {
-        return price;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
+	@DynamoDbAttribute(value = "price")
+	public String getPrice() {
+		return price;
+	}
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+	@DynamoDbAttribute(value = "quantity")
+	public Integer getQuantity() {
+		return quantity;
+	}
 
-    public Integer getTotalPrice() {
-        return totalPrice;
-    }
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
 
-    public void setTotalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+	@DynamoDbAttribute(value = "totalPrice")
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
 
-    @Override
-    public String toString() {
-        return "OrderProduct [code=" + code + ", name=" + name + ", price=" + price + ", quantity=" + quantity
-                + ", totalPrice=" + totalPrice + "]";
-    }
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
-    
+	@Override
+	public String toString() {
+		return "OrderProduct [code=" + code + ", name=" + name + ", price=" + price + ", quantity=" + quantity
+				+ ", totalPrice=" + totalPrice + "]";
+	}
 
 }
