@@ -33,7 +33,7 @@ public class OrderProductConverter implements DynamoDBTypeConverter<Map<String, 
 				break;
 			}
 			case "price": {
-				orderProduct.setPrice(value);
+				orderProduct.setPrice(Integer.parseInt(value));
 				;
 				break;
 			}

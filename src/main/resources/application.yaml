@@ -1,8 +1,24 @@
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.cloud.aws.autoconfigure.context.ContextInstanceDataAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextStackAutoConfiguration
+      - org.springframework.cloud.aws.autoconfigure.context.ContextRegionProviderAutoConfiguration
 server:
-    port: 8091
+    port: 8080
 amazon:
     dynamodb:
         endpoint: "https://dynamodb.ap-south-1.amazonaws.com"
     aws:
         accesskey: "AKIATB6ZHMNI4NU5UGPB"
         secretkey: "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"
+cloud:
+  aws:
+    region:
+      static: ap-south-1
+      auto: false
+    credentials:
+      access-key: AKIATB6ZHMNIQXUOQDSF
+      secret-key: 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
+    end-point:
+      uri: https://sqs.ap-south-1.amazonaws.com/210372092753/orderProductQueue

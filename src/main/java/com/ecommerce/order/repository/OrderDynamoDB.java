@@ -16,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.stereotype.Repository;
 
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
@@ -30,6 +32,11 @@ import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
 @Repository
 public class OrderDynamoDB {
 	private final static Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
+	@Autowired
+	private QueueMessagingTemplate queueMessagingTemplate;
+
+	@Value("${cloud.aws.end-point.uri}")
+	private String endpoint;
 
 	@Autowired
 	private DynamoDbEnhancedClient dynamoDbenhancedClient;
@@ -40,7 +47,7 @@ public class OrderDynamoDB {
 
 			Order order = new Order(orderDTO.getUserEmail(), orderDTO.getOrderID(), orderDTO.getPaymentMethod(),
 					orderDTO.getAddress(), orderDTO.getProducts(), orderDTO.getTotalAmount());
-
+			queueMessagingTemplate.convertAndSend(endpoint, orderDTO.getProducts());
 			table.putItem(order);
 
 		} catch (Exception e) {
