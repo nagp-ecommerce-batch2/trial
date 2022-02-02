@@ -9,6 +9,7 @@ server:
 amazon:
     dynamodb:
         endpoint: "https://dynamodb.ap-south-1.amazonaws.com"
+<<<<<<< HEAD
     aws:
         accesskey: "AKIATB6ZHMNI4NU5UGPB"
         secretkey: "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"
@@ -22,3 +23,5 @@ cloud:
       secret-key: 2LAqQCLdsbG0N+yosKTNm0jtA049D7cjqt8CT3JQ
     end-point:
       uri: https://sqs.ap-south-1.amazonaws.com/210372092753/orderProductQueue
+=======
+>>>>>>> a523d649f0073d0ad08d6bde7e810259d3fb389c
