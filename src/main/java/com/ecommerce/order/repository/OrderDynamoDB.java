@@ -47,7 +47,7 @@ public class OrderDynamoDB {
 
 			Order order = new Order(orderDTO.getUserEmail(), orderDTO.getOrderID(), orderDTO.getPaymentMethod(),
 					orderDTO.getAddress(), orderDTO.getProducts(), orderDTO.getTotalAmount());
-			queueMessagingTemplate.convertAndSend(endpoint, orderDTO.getProducts());
+			queueMessagingTemplate.convertAndSend(endpoint, orderDTO);
 			table.putItem(order);
 
 		} catch (Exception e) {
